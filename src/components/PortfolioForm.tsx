@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { usePortfolioStore } from "../store/usePortfolioStore";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import Image from "next/image";
 
 type PortfolioFormData = {
   firstName: string;
@@ -56,8 +57,6 @@ export default function PortfolioForm() {
       <h1 className="text-2xl font-bold mb-4">แบบฟอร์ม Portfolio</h1>
 
       <input placeholder="ชื่อ" {...register("firstName", { required: true })} className="input" />
-      {errors.firstName && <span className="text-red-500">กรุณากรอกชื่อ</span>}
-
       <input placeholder="นามสกุล" {...register("lastName", { required: true })} className="input" />
       <input placeholder="ที่อยู่" {...register("address", { required: true })} className="input" />
       <input placeholder="เบอร์โทรศัพท์" {...register("phone", { required: true })} className="input" />
@@ -70,7 +69,16 @@ export default function PortfolioForm() {
 
       <label className="block">รูปนักเรียน:</label>
       <input type="file" accept="image/*" onChange={handlePhotoChange} className="input" />
-      {photoPreview && <img src={photoPreview} className="w-32 h-32 object-cover rounded mt-2" />}
+      {/* JSX ต้องอยู่ใน return */}
+      {photoPreview && (
+        <Image
+          src={photoPreview}
+          alt="Preview รูปนักเรียน"
+          width={128}
+          height={128}
+          className="rounded mt-2 object-cover"
+        />
+      )}
 
       <input placeholder="กิจกรรม (คั่นด้วย , )" {...register("activities")} className="input" />
       <input placeholder="รางวัล (คั่นด้วย , )" {...register("awards")} className="input" />

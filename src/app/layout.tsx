@@ -1,29 +1,15 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "My Next.js App",
-  description: "Created with Next.js + TypeScript",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="th">
       <body>
-        <header style={{ padding: "10px", background: "#f3f3f3" }}>
-          <nav>
-            <a href="/">Home</a> | <a href="/about">About</a> |{" "}
-            <a href="/contact">Contact</a>
-          </nav>
-        </header>
-        <main style={{ padding: "20px" }}>{children}</main>
-        <footer style={{ padding: "10px", background: "#f3f3f3" }}>
-          <p>© 2025 My App</p>
-        </footer>
+        <nav className="p-4 bg-gray-200 flex space-x-4">
+          {/* แทน <a> ด้วย <Link> */}
+          <Link href="/" className="text-blue-600">หน้าแรก</Link>
+          <Link href="/admin" className="text-blue-600">Admin</Link>
+        </nav>
+        <main>{children}</main>
       </body>
     </html>
   );
