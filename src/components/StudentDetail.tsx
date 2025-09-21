@@ -2,9 +2,13 @@
 
 import { usePortfolioStore } from "../store/usePortfolioStore";
 
-export default function StudentDetail({ id }: { id: string }) {
+interface StudentDetailProps {
+  params: { id: string };
+}
+
+export default function StudentDetail({ params }: StudentDetailProps) {
   const getPortfolioById = usePortfolioStore((state) => state.getPortfolioById);
-  const student = getPortfolioById(id);
+  const student = getPortfolioById(params.id);
 
   if (!student) return <p>ไม่พบข้อมูลนักเรียน</p>;
 
