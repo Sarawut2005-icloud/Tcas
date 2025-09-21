@@ -1,5 +1,9 @@
 import StudentDetail from "../../../components/StudentDetail";
 
-export default function StudentPage({ params }: { params: { id: string } }) {
+interface Params {
+  params: { id: string };
+}
+
+export default function StudentPage({ params }: Params) {
   return <StudentDetail id={params.id} />;
 }

@@ -8,8 +8,8 @@ export type Portfolio = {
   phone: string;
   school: string;
   gpa: number;
-  talent: string;
-  reason: string;
+  talent?: string;
+  reason?: string;
   major: string;
   university: string;
   photo?: string;

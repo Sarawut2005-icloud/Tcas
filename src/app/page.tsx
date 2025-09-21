@@ -1,5 +1,5 @@
 import PortfolioForm from "../components/PortfolioForm";
 
-export default function HomePage() {
+export default function Home() {
   return <PortfolioForm />;
 }

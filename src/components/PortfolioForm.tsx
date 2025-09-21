@@ -5,20 +5,36 @@ import { usePortfolioStore } from "../store/usePortfolioStore";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
+type PortfolioFormData = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  phone: string;
+  school: string;
+  gpa: string;
+  talent?: string;
+  reason?: string;
+  major: string;
+  university: string;
+  activities?: string;
+  awards?: string;
+  works?: string;
+};
+
 export default function PortfolioForm() {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<PortfolioFormData>();
   const addPortfolio = usePortfolioStore((state) => state.addPortfolio);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: PortfolioFormData) => {
     const newPortfolio = {
       id: uuidv4(),
       ...data,
       gpa: parseFloat(data.gpa),
       photo: photoPreview || undefined,
-      activities: data.activities?.split(",").map((a: string) => a.trim()),
-      awards: data.awards?.split(",").map((a: string) => a.trim()),
-      works: data.works?.split(",").map((a: string) => a.trim()),
+      activities: data.activities?.split(",").map(a => a.trim()),
+      awards: data.awards?.split(",").map(a => a.trim()),
+      works: data.works?.split(",").map(a => a.trim()),
     };
     addPortfolio(newPortfolio);
     reset();
